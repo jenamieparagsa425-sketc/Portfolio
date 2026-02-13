@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenamie B. Paragsa · 3D portfolio · #510A32</title>
+    <!-- Poppins + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ✅ UNCHANGED – your original design, colors, 3D transforms, 2x2 picture, etc. */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #510A32, #3f0827, #2d051c);
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            perspective: 900px;
+        }
+
+        .portfolio-container {
+            max-width: 1250px;
+            width: 100%;
+            background: #fff9fb;
+            border-radius: 44px;
+            box-shadow: 0 22px 36px -12px rgba(81, 10, 50, 0.3), 0 6px 14px rgba(0,0,0,0.08);
+            padding: 2.2rem 2.5rem;
+            border: 1px solid rgba(255, 215, 225, 0.6);
+            transform: translateZ(10px);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .portfolio-container:hover {
+            transform: translateZ(18px);
+            box-shadow: 0 32px 48px -16px #510A32;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.8rem;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 1.1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #c88a9f;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #510A32;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            transition: 0.15s;
+            text-decoration: none;
+            background: rgba(255, 235, 240, 0.7);
+            border: 1px solid rgba(255, 200, 210, 0.6);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(81, 10, 50, 0.05);
+            transform: translateZ(0);
+        }
+
+        .nav-link i { color: #510A32; font-size: 1.2rem; }
+        .nav-link:hover {
+            background: #fadbe6;
+            border-color: #b25c7a;
+            transform: translateY(-2px) translateZ(6px);
+            box-shadow: 0 8px 16px -6px #6f284a;
+        }
+        .nav-active {
+            background: #510A32 !important;
+            color: white !important;
+            border-color: #a94769 !important;
+            transform: translateZ(6px);
+            box-shadow: 0 8px 16px -6px #510A32;
+        }
+        .nav-active i { color: white !important; }
+
+        .personal-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            background: #ffeef2;
+            padding: 1.2rem 1.8rem;
+            border-radius: 38px;
+            border: 1px solid rgba(209, 139, 161, 0.4);
+            transform: translateZ(8px);
+            box-shadow: 0 12px 20px -10px rgba(81, 10, 50, 0.15);
+        }
+
+        .profile-pic-container {
+            width: 192px;
+            height: 192px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 18px 28px -12px rgba(81, 10, 50, 0.5), 0 0 0 4px rgba(255, 230, 240, 0.5) inset, 0 0 0 1px rgba(255, 255, 255, 0.8);
+            transform: translateZ(16px) scale(1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid white;
+            flex-shrink: 0;
+        }
+        .profile-pic-container:hover {
+            transform: translateZ(28px) scale(1.02);
+            box-shadow: 0 28px 36px -14px #510A32, 0 0 0 6px rgba(255, 220, 240, 0.6) inset;
+        }
+        .profile-pic-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .name-title { display: flex; flex-direction: column; gap: 0.4rem; }
+        .name-title h1 { color: #510A32; font-weight: 700; font-size: 2rem; margin-bottom: 0.2rem; }
+        .badge-course {
+            background: #fad3df;
+            color: #510A32;
+            border-left: 6px solid #9f3f5c;
+            border-radius: 40px;
+            padding: 0.3rem 1.2rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            width: fit-content;
+        }
+        .year-chip {
+            background: #6e2446;
+            color: white;
+            border-radius: 30px;
+            padding: 0.3rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 6px 12px -4px #510A32;
+        }
+
+        .content-section { display: block; margin-top: 1.2rem; scroll-margin-top: 30px; }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 650;
+            font-size: 1.5rem;
+            color: #510A32;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #d597ab;
+            padding-bottom: 0.5rem;
+        }
+        .section-title i { color: #9a3f5c; font-size: 1.8rem; }
+
+        .objective-card {
+            background: #fff7f9;
+            padding: 1.5rem 2rem;
+            border-radius: 30px;
+            border-left: 10px solid #510A32;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: #38222b;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 14px 20px -12px rgba(81, 10, 50, 0.12);
+            transform: translateZ(6px);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .objective-card:hover {
+            transform: translateZ(16px);
+            box-shadow: 0 24px 32px -14px #510A32;
+        }
+
+        /* ----- INDIVIDUAL CONTAINERS for EACH ACHIEVEMENT – same as before ----- */
+        .achievement-grid-individual {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .achievement-card {
+            background: #fff9fc;
+            border-radius: 28px;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid rgba(209, 139, 161, 0.3);
+            box-shadow: 0 16px 24px -12px rgba(81, 10, 50, 0.1);
+            transform: translateZ(8px);
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            position: relative;
+            border-left: 12px solid #510A32;
+        }
+
+        .achievement-card:hover {
+            transform: translateZ(22px) scale(1.01);
+            box-shadow: 0 28px 36px -16px #510A32;
+            border-color: #c48a9f;
+            background: white;
+        }
+
+        .achievement-icon {
+            background: #fadbe6;
+            color: #510A32;
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 12px -6px rgba(81,10,50,0.2);
+            transform: translateZ(6px);
+            flex-shrink: 0;
+        }
+
+        .achievement-content { flex: 1; }
+        .achievement-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #510A32;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+        }
+        .achievement-desc {
+            color: #5f3f4c;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.3rem;
+        }
+        .achievement-badge {
+            background: #fce4ec;
+            border-radius: 50px;
+            padding: 0.2rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #7a2e4a;
+            border: 1px solid #f4b7c7;
+            margin-left: 0.5rem;
+        }
+        .achievement-card:nth-child(1) { border-left-color: #9f3f5c; }
+        .achievement-card:nth-child(2) { border-left-color: #b24b6a; }
+        .achievement-card:nth-child(3) { border-left-color: #85254b; }
+        .achievement-card:nth-child(4) { border-left-color: #6e2446; }
+        .achievement-card:nth-child(5) { border-left-color: #591c38; }
+
+        /* ----- NEW EXPERTISE STYLES – TWO DISTINCT CONTAINERS (IT SUPPORT + SOCIAL MEDIA) ----- */
+        .expertise-double-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .expertise-card {
+            background: #fff9fc;
+            border-radius: 36px;
+            padding: 1.6rem 2rem;
+            border: 1px solid rgba(209, 139, 161, 0.3);
+            box-shadow: 0 20px 28px -14px rgba(81, 10, 50, 0.1);
+            transform: translateZ(8px);
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            position: relative;
+        }
+
+        .expertise-card:hover {
+            transform: translateZ(20px);
+            box-shadow: 0 28px 40px -18px #510A32;
+            border-color: #c48a9f;
+            background: white;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 2rem;
+            width: 70px;
+            height: 6px;
+            background: #510A32;
+            border-radius: 20px;
+            opacity: 0.7;
+        }
+
+        .expertise-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #510A32;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #f0c0ce;
+            padding-bottom: 0.6rem;
+        }
+
+        .expertise-header i {
+            color: #85254b;
+            font-size: 1.8rem;
+            background: #fce4ec;
+            padding: 0.5rem;
+            border-radius: 18px;
+        }
+
+        .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .expertise-skill-item {
+            background: white;
+            border-radius: 60px;
+            padding: 0.65rem 1.6rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(81, 10, 50, 0.03);
+            border: 1px solid #efc0ce;
+            color: #510A32;
+            font-size: 0.98rem;
+            transform: translateZ(4px);
+            transition: 0.1s ease;
+        }
+
+        .expertise-skill-item:hover {
+            transform: translateZ(14px);
+            box-shadow: 0 14px 22px -10px #6b2c48;
+            background: #fff9fc;
+            border-color: #b25977;
+        }
+
+        .expertise-skill-item i {
+            color: #8b3b58;
+            font-size: 1.1rem;
+            width: 1.4rem;
+            text-align: center;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .project-item {
+            background: white;
+            border-radius: 28px;
+            padding: 1.3rem 1.3rem;
+            border: 1px solid #fad7e2;
+            display: flex;
+            flex-direction: column;
+            transition: 0.15s;
+            box-shadow: 0 10px 16px -10px rgba(81, 10, 50, 0.06);
+            transform: translateZ(6px);
+        }
+        .project-item:hover {
+            border-color: #b16280;
+            transform: translateZ(18px);
+            box-shadow: 0 24px 32px -16px #510A32;
+        }
+        .project-icon {
+            background: #fad9e4;
+            color: #510A32;
+            border-radius: 20px;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 4px 6px rgba(81, 10, 50, 0.05);
+            transform: translateZ(6px);
+        }
+
+        .contact-card {
+            background: #fff4f7;
+            border-radius: 36px;
+            padding: 2rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(209, 139, 161, 0.4);
+            box-shadow: 0 16px 24px -12px rgba(81, 10, 50, 0.12);
+            transform: translateZ(8px);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #510A32;
+            font-weight: 500;
+            border: 1px solid rgba(200, 120, 140, 0.3);
+            transition: 0.15s;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 12px -8px rgba(81, 10, 50, 0.08);
+            transform: translateZ(4px);
+            width: fit-content;
+        }
+        .contact-item i { font-size: 1.2rem; color: #85254b; width: 24px; }
+        .contact-item:hover {
+            background: #510A32;
+            color: white;
+            border-color: #b4577a;
+            transform: translateY(-3px) translateZ(16px);
+            box-shadow: 0 20px 26px -12px #510A32;
+        }
+        .contact-item:hover i { color: white; }
+        .contact-intro { font-size: 1.2rem; font-weight: 600; color: #510A32; display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; }
+
+        hr { border: none; border-top: 2px dashed #c991a6; margin: 2rem 0 0.5rem; }
+        .footer-note { display: flex; justify-content: flex-end; color: #682c47; font-size: 0.85rem; }
+        html { scroll-behavior: smooth; }
+
+        @media (max-width: 750px) {
+            .personal-header { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+            .profile-pic-container { width: 160px; height: 160px; }
+            .achievement-card { flex-wrap: wrap; }
+            .expertise-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+        <!-- █████  MENU – primary #510A32 active █████ -->
+        <div class="nav-menu">
+            <a href="#home-section" class="nav-link nav-active" id="home-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#achievement-section" class="nav-link" id="achievement-link"><i class="fas fa-trophy"></i> Achievement</a>
+            <a href="#expertise-section" class="nav-link" id="expertise-link"><i class="fas fa-brain"></i> Expertise</a>
+            <a href="#contact-section" class="nav-link" id="contact-link"><i class="fas fa-address-book"></i> Contact</a>
+        </div>
+
+        <!-- 👤 PROFILE HEADER – 2x2 inch picture (square) -->
+        <div class="personal-header">
+            <div style="display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap;">
+                <div class="profile-pic-container">
+                    <img src="jenamie.png" alt="Jenamie B. Paragsa profile">
+                </div>
+                <div class="name-title">
+                    <h1>Jenamie B. Paragsa</h1>
+                    <span class="badge-course"><i class="fas fa-laptop-code"></i> Bachelor of Science in Information Technology</span>
+                </div>
+            </div>
+            <div class="year-chip">
+                <i class="fas fa-calendar-check"></i> 3rd Year · 2025-2026
+            </div>
+        </div>
+
+        <!-- ==========  H O M E  ========== -->
+        <div class="content-section" id="home-section">
+            <div class="section-title">
+                <i class="fas fa-house-user"></i>
+                <span>Home / profile</span>
+            </div>
+            <div class="objective-card">
+                <i class="fas fa-bullseye" style="font-size: 1.8rem; margin-right: 0.8rem; color: #510A32;"></i>
+                <strong style="font-size:1.2rem; color:#510A32;">Career objective</strong><br>
+                Motivated IT student passionate about front-end development & inclusive design. Looking for an internship where I can craft responsive interfaces, collaborate with cross-functional teams, and grow into a creative developer. Eager to bring user-first thinking into every project.
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; margin: 1.2rem 0 1rem;">
+                <i class="fas fa-folder-open" style="font-size: 1.8rem; color: #87284e;"></i>
+                <h2 style="font-weight: 600; font-size: 1.6rem; color: #510A32;">Recent projects</h2>
+            </div>
+            <div class="project-grid">
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-tasks"></i></div>
+                    <h3 style="font-weight: 700; color: #510A32;">StudyBuddy Planner</h3>
+                    <p style="color: #5b3f4a; margin-top: 6px;">Task manager with localStorage, drag-drop & pomodoro timer. HTML, CSS, vanilla JS.</p>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-seedling"></i></div>
+                    <h3 style="font-weight: 700; color: #510A32;">EcoGrow Campus</h3>
+                    <p style="color: #5b3f4a;">Sustainable landing page · mobile-first, animated SVGs, and carbon footprint calculator (Figma prototype).</p>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon"><i class="fas fa-palette"></i></div>
+                    <h3 style="font-weight: 700; color: #510A32;">Portfolio gallery v1</h3>
+                    <p style="color: #5b3f4a;">Responsive photo essay with lightbox, CSS grid and flex, accessibility tested.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========  A C H I E V E M E N T – INDIVIDUAL CONTAINERS (EACH ACHIEVEMENT IN ITS OWN CARD) ========= -->
+        <div class="content-section" id="achievement-section" style="margin-top: 1.8rem;">
+            <div class="section-title">
+                <i class="fas fa-medal"></i>
+                <span>Achievements & honors</span>
+            </div>
+            
+            <div class="achievement-grid-individual">
+                <!-- 1. HIGH HONOR -->
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-crown"></i></div>
+                    <div class="achievement-content">
+                        <div class="achievement-title">HIGH HONOR</div>
+                        <div class="achievement-desc">Academic Excellence Award <span class="achievement-badge">2022-2023</span></div>
+                    </div>
+                </div>
+                <!-- 2. GAOALKEEPER IN FOOTSAL -->
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="achievement-content">
+                        <div class="achievement-title">GAOALKEEPER IN FOOTSAL</div>
+                        <div class="achievement-desc">REPRESENT BANTAYAN · Provincial Futsal Tournament 2021<span class="achievement-badge">starter</span></div>
+                    </div>
+                </div>
+                <!-- 3. VOLLEYBALL GIRL CHAMPION -->
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i class="fas fa-volleyball-ball"></i></div>
+                    <div class="achievement-content">
+                        <div class="achievement-title">VOLLEYBALL GIRL CHAMPION</div>
+                        <div class="achievement-desc">Intramurals 2020 · 1st place, women's volleyball<span class="achievement-badge">gold medal</span></div>
+                    </div>
+                </div>
+                
+                
+            </div>
+           
+        </div>
+
+        <!-- ==========  E X P E R T I S E – TWO CONTAINERS: IT SUPPORT + SOCIAL MEDIA ========= -->
+        <div class="content-section" id="expertise-section">
+            <div class="section-title">
+                <i class="fas fa-cogs"></i>
+                <span>Expertise & deep skills</span>
+            </div>
+            
+            <div class="expertise-double-container">
+                <!--  CONTAINER 1 – IT SUPPORT SYSTEMS (System Administrative, Hardware Maintenance, etc.) -->
+                <div class="expertise-card">
+                    <div class="expertise-header">
+                        <i class="fas fa-server"></i> IT Support Systems
+                    </div>
+                    <div class="skill-grid">
+                        <span class="expertise-skill-item"><i class="fas fa-user-cog"></i> System Administrative</span>
+                        <span class="expertise-skill-item"><i class="fas fa-microchip"></i> Hardware Maintenance</span>
+                        <span class="expertise-skill-item"><i class="fas fa-tools"></i> Technical Troubleshooting</span>
+                        <span class="expertise-skill-item"><i class="fas fa-download"></i> Software Installation</span>
+                    </div>
+                    
+                </div>
+                
+                <!--  CONTAINER 2 – SOCIAL MEDIA CONTENT EDITING (Short-form Video, Graphics, etc.) -->
+                <div class="expertise-card">
+                    <div class="expertise-header">
+                        <i class="fas fa-video"></i> Social Media Content Editing
+                    </div>
+                    <div class="skill-grid">
+                        <span class="expertise-skill-item"><i class="fas fa-film"></i> Short-form Video Editing</span>
+                        <span class="expertise-skill-item"><i class="fas fa-paint-brush"></i> Social Media Graphics</span>
+                        <span class="expertise-skill-item"><i class="fas fa-scissors"></i> Video Editing for Social Media</span>
+                        <span class="expertise-skill-item"><i class="fas fa-calendar-alt"></i> Content Strategy Planning</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========  C O N T A C T – unchanged ========= -->
+        <div class="content-section" id="contact-section">
+            <div class="section-title">
+                <i class="fas fa-address-card"></i>
+                <span>Let's connect</span>
+            </div>
+            <div class="contact-card">
+                <div class="contact-info">
+                    <div class="contact-intro">
+                        <i class="fas fa-comment-dots"></i> Contact Me 
+                    </div>
+                    <a href="mailto:jenamieparagsa425@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i> jenamieparagsa425@gmail.com
+                    </a>
+                    <a href="tel:+63814479283" class="contact-item">
+                        <i class="fas fa-phone-alt"></i> +63 981 447 9283
+                    </a>
+                    <span class="contact-item" style="cursor: default; background: white;">
+                        <i class="fas fa-map-marker-alt"></i> Madridejos, Philippines
+                    </span>
+                </div>
+                <div style="opacity:0.2; font-size: 2.5rem;">
+                    <i class="fas fa-globe-asia" style="color: #510A32;"></i>
+                </div>
+            </div>
+        </div>
+        <hr>
+        
+    </div>
+
+    <!-- JavaScript (unchanged – active menu states) -->
+    <script>
+        (function() {
+            "use strict";
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+            
+            function removeActiveClasses() {
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                });
+            }
+
+            function setActiveLink(sectionId) {
+                removeActiveClasses();
+                const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('nav-active');
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    removeActiveClasses();
+                    this.classList.add('nav-active');
+                });
+            });
+
+            function updateActiveSectionOnScroll() {
+                let currentSectionId = '';
+                const scrollPosition = window.scrollY + 150;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    setActiveLink(currentSectionId);
+                } else {
+                    const homeSection = document.getElementById('home-section');
+                    if (homeSection && window.scrollY < homeSection.offsetTop + 100) {
+                        setActiveLink('home-section');
+                    }
+                }
+            }
+
+            let isScrolling;
+            window.addEventListener('scroll', function() {
+                window.cancelAnimationFrame(isScrolling);
+                isScrolling = window.requestAnimationFrame(updateActiveSectionOnScroll);
+            });
+
+            window.addEventListener('load', function() {
+                if (window.location.hash) {
+                    const hash = window.location.hash.substring(1);
+                    setActiveLink(hash);
+                } else {
+                    setActiveLink('home-section');
+                }
+                updateActiveSectionOnScroll();
+            });
+
+            window.addEventListener('hashchange', function() {
+                if (window.location.hash) {
+                    const hash = window.location.hash.substring(1);
+                    setActiveLink(hash);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
